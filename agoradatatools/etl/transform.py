@@ -346,6 +346,10 @@ def transform_gene_info(datasets: dict):
 def transform_distribution_data(datasets: dict, overall_max_score, genetics_max_score, omics_max_score, lit_max_score):
 
     overall_scores = datasets['overall_scores']
+
+    # subtract flyneuropath score from over all scores
+    overall_scores['overall'] = overall_scores['overall'] - overall_scores['flyneuropathscore']
+
     interesting_columns = ['ensg', 'overall', 'geneticsscore', 'omicsscore', 'literaturescore']
 
     # create mapping to deal with missing values as they take different shape across the fields
